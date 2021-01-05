@@ -35,6 +35,7 @@
         ('SYLVESTERPAUSCHALE', '2021-12-26', '2022-01-02');";
 
         query_reiseDB($sql);
+        echo "Tabelle 'saisonzeiten' gefüllt";
     }
 
     // returns the corresponding season to a date
@@ -114,6 +115,7 @@
     }
 
     // !!! SINGLE USE CALL
+    // fill_season_data_set()
     // fill_flats_data_set();
     
 ?>

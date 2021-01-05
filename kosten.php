@@ -61,11 +61,11 @@
             $costs = calc_costs($season, $typ, $kategory, $number_of_days);
 
             echo "<p>";
-            echo "Die Reisezeit beträgt ".$number_of_days." Tage.<br>";
-            echo "Der Starttermin liegt in der $season.<br>";
-            echo "Der gewählte Typ ist $typ.<br>";
-            echo "Gewählt wurde die $kategory-Sterne-Kategorie.<br>";
-            echo "Die Kosten der Reise betragen ".$costs." €.<br>";
+                echo "Die Reisezeit beträgt ".$number_of_days." Tage.<br>";
+                echo "Der Starttermin liegt in der $season.<br>";
+                echo "Der gewählte Typ ist $typ.<br>";
+                echo "Gewählt wurde die $kategory-Sterne-Kategorie.<br>";
+                echo "Die Kosten der Reise betragen ".$costs." €.<br>";
             echo "</p>";
         }
 
@@ -85,6 +85,9 @@
             return $price;
         }
     ?>
+    <p>
+        <a href='home.php'>Go Back 2 Home</a>
+    </p>;
 
 </body>
 </html>
