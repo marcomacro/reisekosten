@@ -6,6 +6,6 @@
 
 - Kosten der Reise: Nachkommastellen anzeigen
 
-- Datumsformat: Eurooäisch.
+- Datumsformat: Europäisch.
 - Datum: Wochentag ausgeben
 - **Zurück**-Link einfügen
