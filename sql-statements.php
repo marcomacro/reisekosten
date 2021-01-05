@@ -103,6 +103,17 @@
         ('HAUPTSAISON', 'D1', 4, 177.00, 97.00);";
 
         query_reiseDB($sql);
+        echo "Tabelle 'wohnungspreise' gefüllt";
     }
+
+    function query_prices($season, $typ, $kategory) {
+        $sql = "SELECT erstTag, folgeTag
+        FROM wohnungspreise
+        WHERE saison='$season' AND typ='$typ' AND kategorie='$kategory'";
+        return query_reiseDB($sql);
+    }
+
+    // !!! SINGLE USE CALL
+    // fill_flats_data_set();
     
 ?>
