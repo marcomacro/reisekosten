@@ -104,5 +104,5 @@
 
         query_reiseDB($sql);
     }
-    test_insert_wohnungspreise();
+    
 ?>
