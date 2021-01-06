@@ -2,7 +2,7 @@
 
 ## reserved 4 fixing
 
-- Reisedauer: 3 Tage / 1 Tag**e**, Plural-e abfangen
+- ~~Reisedauer: 3 Tage / 1 Tag**e**, Plural-e abfangen~~ DONE
 
 - Kosten der Reise: Nachkommastellen anzeigen
 

@@ -90,12 +90,14 @@
         }
 
         function ask_typ($start_date, $end_date, $season) {
+            $days = calc_days($start_date, $end_date);
+            if ($days > 1) $days = $days." Tage"; else $days = $days." Tag";
             // display gathered data
             echo "
             <p>
                 Anreise-Tag ist der $start_date.<br>
                 Abreise-Tag ist der $end_date.<br>
-                Die Reisedauer beträgt ".calc_days($start_date, $end_date)." Tage.<br>
+                Die Reisedauer beträgt $days.<br>
                 Die Reise fällt (nach Anreisetag) in die $season.
             </p>
             ";
