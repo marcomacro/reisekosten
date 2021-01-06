@@ -61,16 +61,14 @@
             // display gathered data
             echo "
             <p>
-                Anreise-Tag ist der $start_date.<br>
-                Die Reise fällt (nach Anreisetag) in die $season.
+            Anreise-Tag ist ".date_format_de($start_date).".<br>
+            Die Reise fällt (nach Anreisetag) in die $season.
             </p>
             ";
-
             // increasing $start_date by one day
-            $start = new DateTime($start_date );
+            $start = new DateTime($start_date);
             $start->add(new DateInterval('P1D'));
             $next_day = $start->format('Y-m-d');
-
             // ask next data point
             echo "
             <form action='kosten_1.php' method='GET'>
@@ -90,13 +88,12 @@
         }
 
         function ask_typ($start_date, $end_date, $season) {
-            $days = calc_days($start_date, $end_date);
-            if ($days > 1) $days = $days." Tage"; else $days = $days." Tag";
+            $days = days_format(calc_days($start_date, $end_date));
             // display gathered data
             echo "
             <p>
-                Anreise-Tag ist der $start_date.<br>
-                Abreise-Tag ist der $end_date.<br>
+                Anreise-Tag ist ".date_format_de($start_date).".<br>
+                Abreise-Tag ist ".date_format_de($end_date).".<br>
                 Die Reisedauer beträgt $days.<br>
                 Die Reise fällt (nach Anreisetag) in die $season.
             </p>
@@ -107,11 +104,11 @@
             <form action='kosten_1.php' method='GET'>
                 Appartement-Typ:
                 <select name='typ'>
-                    <option value='A'>A</option>
-                    <option value='B'>B</option>
+                    <option value='A' >A</option>
+                    <option value='B' >B</option>
                     <option value='B2'>B2</option>
-                    <option value='C'>C</option>
-                    <option value='D'>D</option>
+                    <option value='C' >C</option>
+                    <option value='D' >D</option>
                     <option value='D1' selected>D1</option>
                 </select>
                 ";
@@ -129,12 +126,13 @@
         }
 
         function ask_category($start_date, $end_date, $season, $typ) {
+            $days = days_format(calc_days($start_date, $end_date));
             // display gathered data
             echo "
             <p>
-                Anreise-Tag ist der $start_date.<br>
-                Abreise-Tag ist der $end_date.<br>
-                Die Reisedauer beträgt ".calc_days($start_date, $end_date)." Tage.<br>
+                Anreise-Tag ist ".date_format_de($start_date).".<br>
+                Abreise-Tag ist ".date_format_de($end_date).".<br>
+                Die Reisedauer beträgt $days.<br>
                 Die Reise fällt (nach Anreisetag) in die $season.
             </p>
             <p>
@@ -168,13 +166,14 @@
 
         function print_results($start_date, $end_date, $season, $typ, $category) {
             $number_of_days = calc_days($start_date, $end_date);
+            $days = days_format($number_of_days);
             $costs = calc_costs($season, $typ, $category, $number_of_days);
              // display gathered data
              echo "
              <p>
                  Anreise-Tag ist der $start_date.<br>
                  Abreise-Tag ist der $end_date.<br>
-                 Die Reisedauer beträgt ".$number_of_days." Tage.<br>
+                 Die Reisedauer beträgt ".$days.".<br>
                  Die Reise fällt (nach Anreisetag) in die $season.
              </p>
              <p>
@@ -196,15 +195,29 @@
         }
 
         // helper function
-        function calc_costs($season, $typ, $kategory, $days) {
-            $result = query_prices($season, $typ, $kategory);
+        function calc_costs($season, $typ, $category, $days) {
+            $result = query_prices($season, $typ, $category);
             $result = mysqli_fetch_array($result);
 
             $first_day_price = $result[0];
             $succeeding_day_price = $result[1];
             
             $price = $first_day_price + ($days-1) * $succeeding_day_price;
-            return $price;
+            return number_format($price, 2, ",", ".");
+        }
+
+        // helper function
+        // is probably OS-dependent (WIN)
+        function date_format_de($date) {
+            setlocale(LC_TIME, 'DE');
+            $time = strtotime($date);
+            return strftime('%a, %d. %B %Y', $time); 
+        }
+
+        // helper function
+        function days_format($days) {
+            if ($days > 1) $suffix ="e"; else $suffix = "";
+            return $days." Tag".$suffix;
         }
     ?>
 

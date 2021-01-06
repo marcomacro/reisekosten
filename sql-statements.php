@@ -107,10 +107,10 @@
         echo "Tabelle 'wohnungspreise' gefüllt";
     }
 
-    function query_prices($season, $typ, $kategory) {
+    function query_prices($season, $typ, $category) {
         $sql = "SELECT erstTag, folgeTag
         FROM wohnungspreise
-        WHERE saison='$season' AND typ='$typ' AND kategorie='$kategory'";
+        WHERE saison='$season' AND typ='$typ' AND kategorie='$category'";
         return query_reiseDB($sql);
     }
 
