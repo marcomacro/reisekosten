@@ -46,7 +46,13 @@
 
     // query all registered seasons
     function list_seasons() {
-        $sql = "SELECT * FROM `saisonzeiten`;";
+        $sql = "SELECT * FROM `saisonzeiten` ORDER BY `von`;";
+        return query_reiseDB($sql);
+    }
+
+    // query all registered flat prize conditions
+    function list_flat_prizes() {
+        $sql = "SELECT * FROM `wohnungspreise` ORDER BY `typ`, `kategorie`, `erstTag`;";
         return query_reiseDB($sql);
     }
     
